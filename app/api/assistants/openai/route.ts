@@ -2,7 +2,8 @@ import { checkApiKey, getServerProfile } from "@/lib/server/server-chat-helpers"
 import { ServerRuntime } from "next"
 import OpenAI from "openai"
 
-export const runtime: ServerRuntime = "edge"
+xport const runtime = "nodejs"
+export const maxDuration = 60
 
 export async function GET() {
   try {
