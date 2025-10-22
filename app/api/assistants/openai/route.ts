@@ -1,50 +1,58 @@
-// app/api/openai/assistants/route.ts
-import OpenAI from "openai";
+import { checkApiKey, getServerProfile } from "@/lib/server/server-chat-helpers"
+import { ChatSettings } from "@/types"
+import { OpenAIStream, StreamingTextResponse } from "ai"
+import { ServerRuntime } from "next"
+import OpenAI from "openai"
+import { ChatCompletionCreateParamsBase } from "openai/resources/chat/completions.mjs"
 
-export const runtime = "nodejs";
-export const maxDuration = 60;
-export const preferredRegion = "iad1"; // 可選
+export const runtime: ServerRuntime = "edge"
 
-export async function GET() {
-  // 20s 逾時防護，避免上游卡住
-  const timeoutMs = 20000;
-  const ac = new AbortController();
-  const timer = setTimeout(() => ac.abort(), timeoutMs);
+export async function POST(request: Request) {
+  const json = await request.json()
+  const { chatSettings, messages } = json as {
+    chatSettings: ChatSettings
+    messages: any[]
+  }
 
   try {
+    const profile = await getServerProfile()
+
+    checkApiKey(profile.openai_api_key, "OpenAI")
+
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY || "", // 建議使用 project 金鑰 sk-proj-...
-      // organization: process.env.OPENAI_ORG_ID, // 可留空
-      fetch: (input, init) => fetch(input as any, { ...init, signal: ac.signal }),
-    });
+      apiKey: profile.openai_api_key || "",
+      organization: profile.openai_organization_id
+    })
 
-    const assistants = await Promise.race([
-      openai.beta.assistants.list({ limit: 100 }),
-      (async () => {
-        await new Promise((r) => setTimeout(r, timeoutMs));
-        throw Object.assign(new Error("Upstream timeout"), { status: 504 });
-      })(),
-    ]);
+    const response = await openai.chat.completions.create({
+      model: chatSettings.model as ChatCompletionCreateParamsBase["model"],
+      messages: messages as ChatCompletionCreateParamsBase["messages"],
+      temperature: chatSettings.temperature,
+      max_tokens:
+        chatSettings.model === "gpt-4-vision-preview" ||
+        chatSettings.model === "gpt-4o"
+          ? 4096
+          : null, // TODO: Fix
+      stream: true
+    })
 
-    clearTimeout(timer);
-    return new Response(JSON.stringify({ assistants: assistants.data ?? [] }), {
-      status: 200,
-      headers: { "content-type": "application/json" },
-    });
-  } catch (e: any) {
-    clearTimeout(timer);
-    const status =
-      e?.status ||
-      e?.response?.status ||
-      (e?.name === "AbortError" ? 504 : 500);
-    const message =
-      e?.error?.message ||
-      e?.response?.data?.error?.message ||
-      e?.message ||
-      "An unexpected error occurred";
-    return new Response(JSON.stringify({ message }), {
-      status,
-      headers: { "content-type": "application/json" },
-    });
+    const stream = OpenAIStream(response)
+
+    return new StreamingTextResponse(stream)
+  } catch (error: any) {
+    let errorMessage = error.message || "An unexpected error occurred"
+    const errorCode = error.status || 500
+
+    if (errorMessage.toLowerCase().includes("api key not found")) {
+      errorMessage =
+        "OpenAI API Key not found. Please set it in your profile settings."
+    } else if (errorMessage.toLowerCase().includes("incorrect api key")) {
+      errorMessage =
+        "OpenAI API Key is incorrect. Please fix it in your profile settings."
+    }
+
+    return new Response(JSON.stringify({ message: errorMessage }), {
+      status: errorCode
+    })
   }
 }
