@@ -236,5 +236,51 @@ export const CHAT_SETTING_LIMITS: Record<LLMID, ChatSettingLimits> = {
     MAX_TEMPERATURE: 1.0,
     MAX_TOKEN_OUTPUT_LENGTH: 12000,
     MAX_CONTEXT_LENGTH: 12000
+  },
+
+  // ==========================================================================
+  // Wuyun Bridge RAG models — handled by AnythingLLM; temperature ignored
+  // ==========================================================================
+  "wuyun-rag-yishan": {
+    MIN_TEMPERATURE: 0.0,
+    MAX_TEMPERATURE: 1.0,
+    MAX_TOKEN_OUTPUT_LENGTH: 4096,
+    MAX_CONTEXT_LENGTH: 32000
+  },
+  "wuyun-rag-env-law": {
+    MIN_TEMPERATURE: 0.0,
+    MAX_TEMPERATURE: 1.0,
+    MAX_TOKEN_OUTPUT_LENGTH: 4096,
+    MAX_CONTEXT_LENGTH: 32000
+  },
+  "wuyun-rag-machine-contract": {
+    MIN_TEMPERATURE: 0.0,
+    MAX_TEMPERATURE: 1.0,
+    MAX_TOKEN_OUTPUT_LENGTH: 4096,
+    MAX_CONTEXT_LENGTH: 32000
+  },
+  "wuyun-rag-car-contract": {
+    MIN_TEMPERATURE: 0.0,
+    MAX_TEMPERATURE: 1.0,
+    MAX_TOKEN_OUTPUT_LENGTH: 4096,
+    MAX_CONTEXT_LENGTH: 32000
+  },
+  "wuyun-rag-zhenling": {
+    MIN_TEMPERATURE: 0.0,
+    MAX_TEMPERATURE: 1.0,
+    MAX_TOKEN_OUTPUT_LENGTH: 4096,
+    MAX_CONTEXT_LENGTH: 32000
+  },
+  "wuyun-rag-machine-manual": {
+    MIN_TEMPERATURE: 0.0,
+    MAX_TEMPERATURE: 1.0,
+    MAX_TOKEN_OUTPUT_LENGTH: 4096,
+    MAX_CONTEXT_LENGTH: 32000
+  },
+  "wuyun-rag": {
+    MIN_TEMPERATURE: 0.0,
+    MAX_TEMPERATURE: 1.0,
+    MAX_TOKEN_OUTPUT_LENGTH: 4096,
+    MAX_CONTEXT_LENGTH: 32000
   }
 }

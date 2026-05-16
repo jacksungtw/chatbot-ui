@@ -7,6 +7,17 @@ export type LLMID =
   | MistralLLMID
   | GroqLLMID
   | PerplexityLLMID
+  | WuyunRagLLMID
+
+// Wuyun Bridge RAG Models (each id maps to one AnythingLLM workspace)
+export type WuyunRagLLMID =
+  | "wuyun-rag-yishan"           // 益山
+  | "wuyun-rag-env-law"          // 環保法規
+  | "wuyun-rag-machine-contract" // 機器合約書
+  | "wuyun-rag-car-contract"     // 車廠合約書
+  | "wuyun-rag-zhenling"         // 真伶
+  | "wuyun-rag-machine-manual"   // 機器說明書
+  | "wuyun-rag"                  // 舊版相容
 
 // OpenAI Models (UPDATED 5/13/24)
 export type OpenAILLMID =

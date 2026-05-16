@@ -81,7 +81,84 @@ const GPT3_5Turbo: LLM = {
   }
 }
 
+// ============================================================================
+// Wuyun Bridge RAG models — routed through OPENAI_BASE_URL (wuyun-bridge)
+// Each id maps to one AnythingLLM workspace in the bridge's MODEL_REGISTRY.
+// ============================================================================
+
+const WUYUN_RAG_PLATFORM = "https://wuyun-bridge-production.up.railway.app"
+
+const WuyunRagYishan: LLM = {
+  modelId: "wuyun-rag-yishan",
+  modelName: "無雲 RAG · 益山",
+  provider: "openai",
+  hostedId: "wuyun-rag-yishan",
+  platformLink: WUYUN_RAG_PLATFORM,
+  imageInput: false
+}
+
+const WuyunRagEnvLaw: LLM = {
+  modelId: "wuyun-rag-env-law",
+  modelName: "無雲 RAG · 環保法規",
+  provider: "openai",
+  hostedId: "wuyun-rag-env-law",
+  platformLink: WUYUN_RAG_PLATFORM,
+  imageInput: false
+}
+
+const WuyunRagMachineContract: LLM = {
+  modelId: "wuyun-rag-machine-contract",
+  modelName: "無雲 RAG · 機器合約書",
+  provider: "openai",
+  hostedId: "wuyun-rag-machine-contract",
+  platformLink: WUYUN_RAG_PLATFORM,
+  imageInput: false
+}
+
+const WuyunRagCarContract: LLM = {
+  modelId: "wuyun-rag-car-contract",
+  modelName: "無雲 RAG · 車廠合約書",
+  provider: "openai",
+  hostedId: "wuyun-rag-car-contract",
+  platformLink: WUYUN_RAG_PLATFORM,
+  imageInput: false
+}
+
+const WuyunRagZhenling: LLM = {
+  modelId: "wuyun-rag-zhenling",
+  modelName: "無雲 RAG · 真伶",
+  provider: "openai",
+  hostedId: "wuyun-rag-zhenling",
+  platformLink: WUYUN_RAG_PLATFORM,
+  imageInput: false
+}
+
+const WuyunRagMachineManual: LLM = {
+  modelId: "wuyun-rag-machine-manual",
+  modelName: "無雲 RAG · 機器說明書",
+  provider: "openai",
+  hostedId: "wuyun-rag-machine-manual",
+  platformLink: WUYUN_RAG_PLATFORM,
+  imageInput: false
+}
+
+const WuyunRagLegacy: LLM = {
+  modelId: "wuyun-rag",
+  modelName: "無雲 RAG · 預設",
+  provider: "openai",
+  hostedId: "wuyun-rag",
+  platformLink: WUYUN_RAG_PLATFORM,
+  imageInput: false
+}
+
 export const OPENAI_LLM_LIST: LLM[] = [
+  WuyunRagYishan,
+  WuyunRagEnvLaw,
+  WuyunRagMachineContract,
+  WuyunRagCarContract,
+  WuyunRagZhenling,
+  WuyunRagMachineManual,
+  WuyunRagLegacy,
   GPT4o,
   GPT4Turbo,
   GPT4Vision,
