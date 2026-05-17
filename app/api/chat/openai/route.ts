@@ -21,20 +21,34 @@ export async function POST(request: Request) {
 
     const openai = new OpenAI({
       apiKey: profile.openai_api_key || "",
-      organization: profile.openai_organization_id
+      organization: profile.openai_organization_id,
+      // 顯式指向 wuyun-bridge，讓 chat completion 也走 bridge（自定 model id 才能 routed）
+      baseURL: process.env.OPENAI_BASE_URL || undefined
     })
 
-    const response = await openai.chat.completions.create({
+    const modelId = String(chatSettings.model).toLowerCase()
+    const isReasoning =
+      modelId.startsWith("gpt-5") ||
+      modelId.startsWith("o1") ||
+      modelId.startsWith("o3") ||
+      modelId.startsWith("o4")
+
+    // 組 request payload — reasoning models 不接受 temperature 等取樣參數
+    const reqParams: any = {
       model: chatSettings.model as ChatCompletionCreateParamsBase["model"],
       messages: messages as ChatCompletionCreateParamsBase["messages"],
-      temperature: chatSettings.temperature,
-      max_tokens:
+      stream: true
+    }
+    if (!isReasoning) {
+      reqParams.temperature = chatSettings.temperature
+      reqParams.max_tokens =
         chatSettings.model === "gpt-4-vision-preview" ||
         chatSettings.model === "gpt-4o"
           ? 4096
-          : null, // TODO: Fix
-      stream: true
-    })
+          : null
+    }
+
+    const response = await openai.chat.completions.create(reqParams)
 
     const stream = OpenAIStream(response)
 
