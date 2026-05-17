@@ -160,6 +160,9 @@ const WuyunRagLegacy: LLM = {
   imageInput: false
 }
 
+// 只保留 GPT-4o（OpenAI 帳號實際可用 + RAG context 穩定的型號）；
+// 移除 gpt-4-turbo-preview / gpt-4-vision-preview / gpt-4 / gpt-3.5-turbo —
+// 這幾個在 token salad 與 404 error 上有問題，移除減少誤點。
 export const OPENAI_LLM_LIST: LLM[] = [
   WuyunRagYishan,
   WuyunRagEnvLaw,
@@ -169,9 +172,5 @@ export const OPENAI_LLM_LIST: LLM[] = [
   WuyunRagMachineManual,
   WuyunRagLegalNda,
   WuyunRagLegacy,
-  GPT4o,
-  GPT4Turbo,
-  GPT4Vision,
-  GPT4,
-  GPT3_5Turbo
+  GPT4o
 ]
