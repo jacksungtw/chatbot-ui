@@ -17,6 +17,7 @@ export type WuyunRagLLMID =
   | "wuyun-rag-car-contract"     // 車廠合約書
   | "wuyun-rag-zhenling"         // 真伶
   | "wuyun-rag-machine-manual"   // 機器說明書
+  | "wuyun-rag-legal-nda"        // 法律 NDA
   | "wuyun-rag"                  // 舊版相容
 
 // OpenAI Models (UPDATED 5/13/24)

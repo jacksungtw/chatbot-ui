@@ -142,6 +142,15 @@ const WuyunRagMachineManual: LLM = {
   imageInput: false
 }
 
+const WuyunRagLegalNda: LLM = {
+  modelId: "wuyun-rag-legal-nda",
+  modelName: "無雲 RAG · 法律 NDA",
+  provider: "openai",
+  hostedId: "wuyun-rag-legal-nda",
+  platformLink: WUYUN_RAG_PLATFORM,
+  imageInput: false
+}
+
 const WuyunRagLegacy: LLM = {
   modelId: "wuyun-rag",
   modelName: "無雲 RAG · 預設",
@@ -158,6 +167,7 @@ export const OPENAI_LLM_LIST: LLM[] = [
   WuyunRagCarContract,
   WuyunRagZhenling,
   WuyunRagMachineManual,
+  WuyunRagLegalNda,
   WuyunRagLegacy,
   GPT4o,
   GPT4Turbo,
