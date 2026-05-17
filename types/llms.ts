@@ -23,6 +23,9 @@ export type WuyunRagLLMID =
 // OpenAI Models (UPDATED 5/13/24)
 export type OpenAILLMID =
   | "gpt-4o" // GPT-4o
+  | "gpt-5.5" // GPT-5.5（OpenAI 最新版，需帳號有權限）
+  | "deepseek-v4" // DeepSeek V4（後端對應 deepseek-chat）
+  | "deepseek-v4-pro" // DeepSeek V4 PRO（後端對應 deepseek-reasoner）
   | "gpt-4-turbo-preview" // GPT-4 Turbo
   | "gpt-4-vision-preview" // GPT-4 Vision
   | "gpt-4" // GPT-4

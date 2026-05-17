@@ -2,6 +2,35 @@ import { LLM } from "@/types"
 
 const OPENAI_PLATORM_LINK = "https://platform.openai.com/docs/overview"
 
+// GPT-5.5（OpenAI 官方，2026 新版）
+const GPT5_5: LLM = {
+  modelId: "gpt-5.5",
+  modelName: "GPT-5.5",
+  provider: "openai",
+  hostedId: "gpt-5.5",
+  platformLink: "https://platform.openai.com/docs/overview",
+  imageInput: true
+}
+
+// DeepSeek V4 / V4 PRO（透過 bridge 轉發到 api.deepseek.com）
+const DeepSeekV4: LLM = {
+  modelId: "deepseek-v4",
+  modelName: "DeepSeek V4",
+  provider: "openai", // chatbot-ui 視為 openai 兼容，走 OPENAI_BASE_URL=bridge
+  hostedId: "deepseek-v4",
+  platformLink: "https://www.deepseek.com/",
+  imageInput: false
+}
+
+const DeepSeekV4Pro: LLM = {
+  modelId: "deepseek-v4-pro",
+  modelName: "DeepSeek V4 PRO",
+  provider: "openai",
+  hostedId: "deepseek-v4-pro",
+  platformLink: "https://www.deepseek.com/",
+  imageInput: false
+}
+
 // OpenAI Models (UPDATED 1/25/24) -----------------------------
 const GPT4o: LLM = {
   modelId: "gpt-4o",
@@ -172,5 +201,8 @@ export const OPENAI_LLM_LIST: LLM[] = [
   WuyunRagMachineManual,
   WuyunRagLegalNda,
   WuyunRagLegacy,
-  GPT4o
+  GPT4o,
+  GPT5_5,
+  DeepSeekV4,
+  DeepSeekV4Pro
 ]
