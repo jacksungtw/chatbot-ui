@@ -189,8 +189,9 @@ const WuyunRagLegacy: LLM = {
   imageInput: false
 }
 
-// 全面改用 DeepSeek V4（價格約 GPT-4o 的 1/20）；
-// GPT-4o / GPT-5.5 暫時移除避免誤點燒 OpenAI 額度（embedding 仍走 OpenAI key）。
+// 主力推 DeepSeek V4（價格約 GPT-4o 的 1/20）；
+// GPT-4o / GPT-5.5 保留供高品質場景使用，但放在末位提示用 DeepSeek 為主。
+// 「無雲 · 法律合約風險評估」工具後端已在 bridge 端改用 DeepSeek，不會燒 OpenAI。
 export const OPENAI_LLM_LIST: LLM[] = [
   WuyunRagYishan,
   WuyunRagEnvLaw,
@@ -201,5 +202,7 @@ export const OPENAI_LLM_LIST: LLM[] = [
   WuyunRagLegalNda,
   WuyunRagLegacy,
   DeepSeekV4,
-  DeepSeekV4Pro
+  DeepSeekV4Pro,
+  GPT4o,
+  GPT5_5
 ]
