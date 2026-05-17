@@ -31,6 +31,11 @@ module.exports = withBundleAnalyzer(
         "onnxruntime-node",
         "pdf-parse"
       ]
+    },
+    // 強制 disable webpack persistent cache，避免 Railway nixpacks 保留舊 chunk
+    webpack: (config, { isServer }) => {
+      config.cache = false
+      return config
     }
   })
 )
