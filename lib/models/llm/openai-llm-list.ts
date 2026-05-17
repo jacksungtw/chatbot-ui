@@ -189,9 +189,8 @@ const WuyunRagLegacy: LLM = {
   imageInput: false
 }
 
-// 只保留 GPT-4o（OpenAI 帳號實際可用 + RAG context 穩定的型號）；
-// 移除 gpt-4-turbo-preview / gpt-4-vision-preview / gpt-4 / gpt-3.5-turbo —
-// 這幾個在 token salad 與 404 error 上有問題，移除減少誤點。
+// 全面改用 DeepSeek V4（價格約 GPT-4o 的 1/20）；
+// GPT-4o / GPT-5.5 暫時移除避免誤點燒 OpenAI 額度（embedding 仍走 OpenAI key）。
 export const OPENAI_LLM_LIST: LLM[] = [
   WuyunRagYishan,
   WuyunRagEnvLaw,
@@ -201,8 +200,6 @@ export const OPENAI_LLM_LIST: LLM[] = [
   WuyunRagMachineManual,
   WuyunRagLegalNda,
   WuyunRagLegacy,
-  GPT4o,
-  GPT5_5,
   DeepSeekV4,
   DeepSeekV4Pro
 ]
