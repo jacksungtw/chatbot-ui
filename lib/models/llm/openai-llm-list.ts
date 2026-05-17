@@ -144,7 +144,7 @@ const WuyunRagMachineManual: LLM = {
 
 const WuyunRagLegalNda: LLM = {
   modelId: "wuyun-rag-legal-nda",
-  modelName: "無雲 RAG · 法律 NDA",
+  modelName: "無雲 · 法律合約風險評估",
   provider: "openai",
   hostedId: "wuyun-rag-legal-nda",
   platformLink: WUYUN_RAG_PLATFORM,
