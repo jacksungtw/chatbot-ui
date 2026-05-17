@@ -5,7 +5,7 @@ import { CHUNK_OVERLAP, CHUNK_SIZE } from "."
 
 // 直接 import pdf-parse 的內部模組，繞過 entry-point 的測試檔讀取（會在 build 後爆炸）
 // 參考：https://gitlab.com/autokent/pdf-parse/-/issues/24
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line
 const pdfParse = require("pdf-parse/lib/pdf-parse.js")
 
 export const processPdf = async (pdf: Blob): Promise<FileItemChunk[]> => {
