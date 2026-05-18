@@ -23,7 +23,12 @@ export async function POST(request: Request) {
       apiKey: profile.openai_api_key || "",
       organization: profile.openai_organization_id,
       // 顯式指向 wuyun-bridge，讓 chat completion 也走 bridge（自定 model id 才能 routed）
-      baseURL: process.env.OPENAI_BASE_URL || undefined
+      baseURL: process.env.OPENAI_BASE_URL || undefined,
+      // 帶上使用者身份給 bridge 做權限檢查（如「無雲 RAG · 預設」只允許某些 username）
+      defaultHeaders: {
+        "X-User-Name": (profile as any).username || "",
+        "X-User-Email": (profile as any).user_email || ""
+      }
     })
 
     const modelId = String(chatSettings.model).toLowerCase()
