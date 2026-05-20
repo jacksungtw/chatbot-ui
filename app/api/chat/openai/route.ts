@@ -25,7 +25,10 @@ export async function POST(request: Request) {
       apiKey: profile.openai_api_key || "",
       organization: profile.openai_organization_id,
       // 顯式指向 wuyun-bridge，讓 chat completion 也走 bridge（自定 model id 才能 routed）
-      baseURL: process.env.OPENAI_BASE_URL || undefined,
+      // hardcode fallback：即使環境變數讀不到也絕不誤打 OpenAI 官方（避免 wuyun-rag-* 回 404）
+      baseURL:
+        process.env.OPENAI_BASE_URL ||
+        "https://wuyun-bridge-production.up.railway.app/v1",
       // 帶上使用者身份給 bridge 做權限檢查
       // 優先用 display_name（人類可讀，如 jacksung）；fallback username（UUID）
       defaultHeaders: {
