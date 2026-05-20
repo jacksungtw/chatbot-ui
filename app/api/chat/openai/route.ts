@@ -64,7 +64,9 @@ export async function POST(request: Request) {
 
     const response = await openai.chat.completions.create(reqParams)
 
-    const stream = OpenAIStream(response)
+    // reqParams 是動態組的（any），TypeScript 推不出 stream:true 回傳型別，
+    // 這裡明確轉型讓 OpenAIStream 接受
+    const stream = OpenAIStream(response as any)
 
     return new StreamingTextResponse(stream)
   } catch (error: any) {
