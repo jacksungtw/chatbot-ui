@@ -5,7 +5,9 @@ import { ServerRuntime } from "next"
 import OpenAI from "openai"
 import { ChatCompletionCreateParamsBase } from "openai/resources/chat/completions.mjs"
 
-export const runtime: ServerRuntime = "edge"
+// 改用 nodejs runtime：edge runtime 在 Railway 環境讀不到 process.env.OPENAI_BASE_URL，
+// 導致 OpenAI SDK 用預設 api.openai.com、自定 model id（wuyun-rag-*）回 404。
+export const runtime: ServerRuntime = "nodejs"
 
 export async function POST(request: Request) {
   const json = await request.json()

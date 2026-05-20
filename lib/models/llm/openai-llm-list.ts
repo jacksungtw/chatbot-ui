@@ -155,7 +155,7 @@ const WuyunRagCarContract: LLM = {
 
 const WuyunRagZhenling: LLM = {
   modelId: "wuyun-rag-zhenling",
-  modelName: "無雲 RAG · 真伶",
+  modelName: "無雲 RAG · 貞伶",
   provider: "openai",
   hostedId: "wuyun-rag-zhenling",
   platformLink: WUYUN_RAG_PLATFORM,
