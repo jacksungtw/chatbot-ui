@@ -119,7 +119,7 @@ const WUYUN_RAG_PLATFORM = "https://wuyun-bridge-production.up.railway.app"
 
 const WuyunRagYishan: LLM = {
   modelId: "wuyun-rag-yishan",
-  modelName: "無雲 RAG · 益山",
+  modelName: "無雲 RAG · 酸洗除雜",
   provider: "openai",
   hostedId: "wuyun-rag-yishan",
   platformLink: WUYUN_RAG_PLATFORM,
@@ -155,7 +155,7 @@ const WuyunRagCarContract: LLM = {
 
 const WuyunRagZhenling: LLM = {
   modelId: "wuyun-rag-zhenling",
-  modelName: "無雲 RAG · 貞伶",
+  modelName: "無雲 RAG · 水洗結晶",
   provider: "openai",
   hostedId: "wuyun-rag-zhenling",
   platformLink: WUYUN_RAG_PLATFORM,
