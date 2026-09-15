@@ -37,10 +37,15 @@ export async function POST(request: Request) {
       baseURL: customModel.base_url
     })
 
+    // GPT-5/6 reasoning models do not accept temperature at default settings.
+    const samplingParameters = /^gpt-(5|6)([.-]|$)/.test(chatSettings.model)
+      ? {}
+      : { temperature: chatSettings.temperature }
+
     const response = await custom.chat.completions.create({
       model: chatSettings.model as ChatCompletionCreateParamsBase["model"],
       messages: messages as ChatCompletionCreateParamsBase["messages"],
-      temperature: chatSettings.temperature,
+      ...samplingParameters,
       stream: true
     })
 
