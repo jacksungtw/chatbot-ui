@@ -1,0 +1,51 @@
+{
+  "tested_at": "2026-09-15T01:28:06.299Z",
+  "endpoint": "https://chatbot-ui-production-b5c7.up.railway.app/api/chat/custom",
+  "results": [
+    {
+      "model": "gpt-6-astra",
+      "passed": true,
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "chunks": 1,
+      "response": "MODEL_OK",
+      "duration_ms": 4238
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "passed": true,
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "chunks": 1,
+      "response": "MODEL_OK",
+      "duration_ms": 1618
+    },
+    {
+      "model": "gpt-5.6-terra",
+      "passed": true,
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "chunks": 1,
+      "response": "MODEL_OK",
+      "duration_ms": 1070
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "passed": true,
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "chunks": 2,
+      "response": "MODEL_OK",
+      "duration_ms": 2069
+    },
+    {
+      "model": "gpt-5.5",
+      "passed": true,
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "chunks": 1,
+      "response": "MODEL_OK",
+      "duration_ms": 2322
+    }
+  ]
+}

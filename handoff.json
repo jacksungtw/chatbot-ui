@@ -1,7 +1,7 @@
 {
   "task": "Register and verify five OpenAI models in existing Chatbot UI",
   "date": "2026-09-15",
-  "status": "ready_to_deploy",
+  "status": "complete",
   "project_id": "fa2009c5-98bf-4da7-b9cb-88929df14d6c",
   "environment_id": "c8677907-4b34-4809-89ce-66cd11a549f0",
   "service_id": "256077d3-c19d-421e-ac26-1f27e2e6786c",
@@ -30,5 +30,21 @@
     "production_build": "passed including lint and type validation",
     "all_jest": "11 passed, 1 existing failure in unchanged OpenAPI stocksTicker conversion test"
   },
-  "remaining": ["deployment", "production streaming tests", "browser verification"]
+  "deployment": {
+    "id": "1f28cdef-39b8-4999-815a-37967f3ab536",
+    "status": "SUCCESS",
+    "source_commit": "04a65606f14229b2ad23eab247326354cbe0b3db"
+  },
+  "production_verification": {
+    "report": "verification/production-models.json",
+    "passed_models": 5,
+    "failed_models": 0,
+    "browser_selector": "all five verified",
+    "browser_chat_id": "a48b4c2d-cc82-4962-bc0f-7e98b530ece1",
+    "browser_reply": "correct Chinese answer to 2+3",
+    "user_message_saved": true,
+    "assistant_reply_saved": true
+  },
+  "remaining": [],
+  "unrelated_existing_backlog": ["OpenAPI stocksTicker conversion test failure"]
 }
