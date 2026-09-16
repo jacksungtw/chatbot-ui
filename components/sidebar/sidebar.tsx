@@ -2,6 +2,8 @@ import { ChatbotUIContext } from "@/context/context"
 import { Tables } from "@/supabase/types"
 import { ContentType } from "@/types"
 import { FC, useContext } from "react"
+import Link from "next/link"
+import { useParams } from "next/navigation"
 import { SIDEBAR_WIDTH } from "../ui/dashboard"
 import { TabsContent } from "../ui/tabs"
 import { WorkspaceSwitcher } from "../utility/workspace-switcher"
@@ -14,6 +16,7 @@ interface SidebarProps {
 }
 
 export const Sidebar: FC<SidebarProps> = ({ contentType, showSidebar }) => {
+  const params = useParams()
   const {
     folders,
     chats,
@@ -66,6 +69,12 @@ export const Sidebar: FC<SidebarProps> = ({ contentType, showSidebar }) => {
 
           <WorkspaceSettings />
         </div>
+        <Link
+          href={`/${params.locale}/${params.workspaceid}/dispatch`}
+          className="hover:bg-accent rounded border px-3 py-2 text-sm font-medium"
+        >
+          每日派工
+        </Link>
 
         {(() => {
           switch (contentType) {

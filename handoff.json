@@ -1,4 +1,13 @@
 {
+  "dispatch_integration": {
+    "status": "code_implemented_not_deployed",
+    "checks": "11 proxy tests passed; TypeScript passed; backend 53 tests passed",
+    "branch": "codex/dispatch-integration",
+    "backend_branch": "jacksungtw/shopee-reconcile codex/toship-phase0",
+    "auth": "existing Supabase user plus explicit operator/supervisor ID allowlists",
+    "remaining": ["production backend and persistent storage", "server secrets and approved user IDs", "browser upload end-to-end acceptance"],
+    "guide": "docs/dispatch-integration.md"
+  },
   "task": "Register and verify five OpenAI models in existing Chatbot UI",
   "date": "2026-09-15",
   "status": "complete",
