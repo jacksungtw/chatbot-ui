@@ -1,5 +1,13 @@
 # Status
 
+## 2026-09-16 上傳 403 修正
+
+- 師父頁面已顯示主管身份，但上傳被 403 擋下；派工後端沒有收到對應 POST。
+- 原同源檢查使用 request.nextUrl.origin，反向代理下可能是內部 HTTP 位址；改用伺服器 TOSHIP_PUBLIC_ORIGIN 精確比對，未放寬跨站來源。
+- 新增內部 HTTP／外部 HTTPS 成功案例與惡意 forwarded-host 拒絕案例；14 項測試及 TypeScript 通過。
+- 修正提交 2496ef7，部署 20e2f20a-1ec9-47c5-adde-358acaeaf2c1；等待正式瀏覽器上傳驗證。
+- 部署已 SUCCESS。Edge 原頁確實顯示指定帳號為主管；自動選檔被擴充功能 Not allowed 拒絕，需開啟 Allow access to file URLs 或使用者手動重試。不能宣稱實際上傳已驗收。
+
 ## 2026-09-16 主管授權
 
 - 師父已指定登入 Email；已在 Supabase 精確核對唯一且已驗證的帳號，將對應 UUID 加入主管名單，未變更密碼或一般同仁權限。

@@ -6,7 +6,14 @@
     "authorization_deployment_id": "6065db39-79b7-4333-a3c6-87a260a49bf0",
     "checks": "12 proxy/cache tests passed; TypeScript passed; production build passed; backend 53 tests passed",
     "deployment_id": "c0674f1a-37e2-4d3c-af7c-3297b8b558f0",
-    "deployed_revision": "f69b768",
+    "deployed_revision": "2496ef7",
+    "origin_fix": {
+      "deployment_id": "20e2f20a-1ec9-47c5-adde-358acaeaf2c1",
+      "status": "SUCCESS",
+      "public_origin": "https://chatbot-ui-production-b5c7.up.railway.app",
+      "tests": "14 passed including trusted proxy origin and hostile forwarded-host rejection; TypeScript passed",
+      "browser_blocker": "Edge fileChooser.setFiles denied: extension requires Allow access to file URLs; user manual upload retest pending"
+    },
     "private_network_acceptance": "HTTP 200; 142-unit unconfirmed v176 draft",
     "anonymous_acceptance": "session/me, ui, job preview all HTTP 401/no-store; browser redirected to login",
     "pwa_acceptance": "production sw.js includes dispatch NetworkOnly rule",

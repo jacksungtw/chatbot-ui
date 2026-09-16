@@ -13,6 +13,7 @@
 Chatbot UI 伺服器需要以下環境變數，全部不得加 NEXT_PUBLIC 前綴：
 
 - `TOSHIP_SERVICE_URL`：獨立派工服務根網址。公開網址必須 HTTPS；HTTP 僅允許 localhost 或 Railway 私網。
+- `TOSHIP_PUBLIC_ORIGIN`：Chatbot UI 正式來源，現為 `https://chatbot-ui-production-b5c7.up.railway.app`。反向代理後的 POST 用此可信設定檢查 Origin，不能直接比對內部 HTTP 網址，也不能信任客戶端傳入的 forwarded-host。
 - `TOSHIP_OPERATOR_KEY`、`TOSHIP_SUPERVISOR_KEY`：與派工後端相同、各至少 32 字元且不同的金鑰。
 - `TOSHIP_OPERATOR_USER_IDS`、`TOSHIP_SUPERVISOR_USER_IDS`：經主管核准的 Supabase 使用者 UUID，以逗號分隔。未列入者一律拒絕。
 
