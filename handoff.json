@@ -1,6 +1,9 @@
 {
   "dispatch_integration": {
-    "status": "deployed_default_deny_pending_supervisor_identity_and_browser_acceptance",
+    "status": "supervisor_runtime_verified_pending_browser_acceptance",
+    "authorization_runtime": "deployment SUCCESS; designated UUID present; supervisor count 1",
+    "authorization_update": "User-designated account uniquely matched and email-confirmed; supervisor UUID added; password unchanged",
+    "authorization_deployment_id": "6065db39-79b7-4333-a3c6-87a260a49bf0",
     "checks": "12 proxy/cache tests passed; TypeScript passed; production build passed; backend 53 tests passed",
     "deployment_id": "c0674f1a-37e2-4d3c-af7c-3297b8b558f0",
     "deployed_revision": "f69b768",
@@ -11,7 +14,7 @@
     "branch": "codex/dispatch-integration",
     "backend_branch": "jacksungtw/shopee-reconcile codex/toship-phase0",
     "auth": "existing Supabase user plus explicit operator/supervisor ID allowlists",
-    "remaining": ["user must designate supervisor login Email; both allowlists currently empty", "browser upload/confirm/download end-to-end acceptance", "verify latest accepted business history beyond v175", "offsite backup and retention", "merge source branch for durable autodeploy"],
+    "remaining": ["browser login/upload/confirm/download end-to-end acceptance", "verify latest accepted business history beyond v175", "offsite backup and retention", "merge source branch for durable autodeploy"],
     "guide": "docs/dispatch-integration.md"
   },
   "task": "Register and verify five OpenAI models in existing Chatbot UI",
