@@ -3,7 +3,14 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 })
 
 const withPWA = require("next-pwa")({
-  dest: "public"
+  dest: "public",
+  runtimeCaching: [
+    {
+      urlPattern: ({ url }) => url.pathname.startsWith("/api/dispatch/"),
+      handler: "NetworkOnly"
+    },
+    ...require("next-pwa/cache")
+  ]
 })
 
 module.exports = withBundleAnalyzer(
