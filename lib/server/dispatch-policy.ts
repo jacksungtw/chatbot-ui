@@ -1,3 +1,26 @@
+export function dispatchOriginAllowed(
+  origin: string | null,
+  requestOrigin: string
+) {
+  // Use server configuration, never client-controlled forwarded headers.
+  const configured = process.env.TOSHIP_PUBLIC_ORIGIN
+  try {
+    const expected = new URL(configured || requestOrigin)
+    if (
+      expected.username ||
+      expected.password ||
+      expected.search ||
+      expected.hash ||
+      expected.pathname !== "/"
+    )
+      return false
+    if (!["https:", "http:"].includes(expected.protocol)) return false
+    return origin === expected.origin
+  } catch {
+    return false
+  }
+}
+
 export function dispatchRole(userId: string) {
   const ids = (value?: string) =>
     (value || "")

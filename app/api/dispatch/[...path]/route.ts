@@ -1,5 +1,9 @@
 import { createClient } from "@/lib/supabase/server"
-import { dispatchPath, dispatchRole } from "@/lib/server/dispatch-policy"
+import {
+  dispatchOriginAllowed,
+  dispatchPath,
+  dispatchRole
+} from "@/lib/server/dispatch-policy"
 import { cookies } from "next/headers"
 import { NextRequest } from "next/server"
 
@@ -29,7 +33,10 @@ async function handle(
   if (!role) return error(403, "帳號尚未獲派工權限，請聯絡管理員")
   if (
     request.method === "POST" &&
-    request.headers.get("origin") !== request.nextUrl.origin
+    !dispatchOriginAllowed(
+      request.headers.get("origin"),
+      request.nextUrl.origin
+    )
   ) {
     return error(403, "Cross-origin request denied")
   }

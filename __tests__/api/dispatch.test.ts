@@ -7,6 +7,7 @@ jest.mock("next/headers", () => ({ cookies: jest.fn() }))
 const auth = jest.fn()
 const upstream = jest.fn()
 beforeEach(() => {
+  delete process.env.TOSHIP_PUBLIC_ORIGIN
   jest.clearAllMocks()
   jest.mocked(createClient).mockReturnValue({ auth: { getUser: auth } } as any)
   auth.mockResolvedValue({
@@ -24,6 +25,46 @@ beforeEach(() => {
       headers: { "Content-Type": "application/json" }
     })
   )
+})
+
+test("trusted public origin works behind an internal HTTP proxy", async () => {
+  process.env.TOSHIP_PUBLIC_ORIGIN = "https://chat.example"
+  const req = new NextRequest(
+    "http://localhost:8080/api/dispatch/toship/assign-file?gen_date=2026-09-16",
+    {
+      method: "POST",
+      headers: {
+        origin: "https://chat.example",
+        "Content-Type": "application/octet-stream"
+      },
+      body: "synthetic"
+    }
+  )
+  const result = await POST(req, {
+    params: { path: ["toship", "assign-file"] }
+  })
+  expect(result.status).toBe(200)
+  expect(upstream).toHaveBeenCalledTimes(1)
+})
+
+test("forwarded host cannot override configured origin", async () => {
+  process.env.TOSHIP_PUBLIC_ORIGIN = "https://chat.example"
+  const req = new NextRequest(
+    "http://localhost:8080/api/dispatch/toship/assign-file",
+    {
+      method: "POST",
+      headers: {
+        origin: "https://evil.example",
+        "x-forwarded-host": "evil.example",
+        "x-forwarded-proto": "https"
+      },
+      body: "synthetic"
+    }
+  )
+  expect(
+    (await POST(req, { params: { path: ["toship", "assign-file"] } })).status
+  ).toBe(403)
+  expect(upstream).not.toHaveBeenCalled()
 })
 function request(
   path: string,
