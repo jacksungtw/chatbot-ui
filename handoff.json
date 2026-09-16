@@ -1,11 +1,17 @@
 {
   "dispatch_integration": {
-    "status": "code_implemented_not_deployed",
-    "checks": "11 proxy tests passed; TypeScript passed; backend 53 tests passed",
+    "status": "deployed_default_deny_pending_supervisor_identity_and_browser_acceptance",
+    "checks": "12 proxy/cache tests passed; TypeScript passed; production build passed; backend 53 tests passed",
+    "deployment_id": "c0674f1a-37e2-4d3c-af7c-3297b8b558f0",
+    "deployed_revision": "f69b768",
+    "private_network_acceptance": "HTTP 200; 142-unit unconfirmed v176 draft",
+    "anonymous_acceptance": "session/me, ui, job preview all HTTP 401/no-store; browser redirected to login",
+    "pwa_acceptance": "production sw.js includes dispatch NetworkOnly rule",
+    "autodeploy_caution": "CLI deployment; main source still configured, merge dispatch branch before next main deployment",
     "branch": "codex/dispatch-integration",
     "backend_branch": "jacksungtw/shopee-reconcile codex/toship-phase0",
     "auth": "existing Supabase user plus explicit operator/supervisor ID allowlists",
-    "remaining": ["production backend and persistent storage", "server secrets and approved user IDs", "browser upload end-to-end acceptance"],
+    "remaining": ["user must designate supervisor login Email; both allowlists currently empty", "browser upload/confirm/download end-to-end acceptance", "verify latest accepted business history beyond v175", "offsite backup and retention", "merge source branch for durable autodeploy"],
     "guide": "docs/dispatch-integration.md"
   },
   "task": "Register and verify five OpenAI models in existing Chatbot UI",

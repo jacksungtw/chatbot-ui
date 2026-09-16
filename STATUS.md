@@ -1,14 +1,19 @@
 # Status
 
-## 每日派工整合：未部署
+## 每日派工整合：已部署，主管授權與業務驗收待完成
 
-- 2026-09-16 部署作業進行中；新增 PWA NetworkOnly 規則，派工 API 不得落入離線快取。
+- 2026-09-16 部署 c0674f1a-37e2-4d3c-af7c-3297b8b558f0 SUCCESS，來源 f69b768。線上 sw.js 已含派工 NetworkOnly 規則。
 
 - 新增工作區「每日派工」頁面與側欄入口，使用既有 Supabase 登入及伺服器端角色名單。
 - 同源代理僅放行固定派工端點；服務金鑰不送到瀏覽器，主管确认需主管權限與同源請求。
 - 支援派工服務的原始 Excel 上傳與解鎖密碼轉送，確認紀錄傳遞已驗證的使用者 ID。
-- 正式服務 URL、金鑰及人員授權仍未設定；尚未部署，瀏覽器上傳端到端驗收未完成。
-- 派工代理 11 項測試及 TypeScript 檢查通過；後端另有 53 項測試通過。
+- 正式私網 URL 與兩把伺服器金鑰已設定；Chatbot UI 容器到派工後端呼叫 200，取得 v176 測試草稿 142 支且 confirmed=false。
+- 三個公開派工 API 匿名請求均為 401/no-store；瀏覽器派工頁導回 /zh/login。
+- 師父尚未指定主管登入 Email，兩組角色名單均未設定，因此所有使用者預設無派工權限。瀏覽器上傳端到端驗收未完成。
+- 派工代理與快取共 12 項測試、TypeScript 檢查通過；Railway production build 成功。後端另有 53 項測試通過。
+- CLI 初次選錯來源目錄導致建置失敗但未取代舊服務；後以 `railway up . --path-as-root` 完成部署。
+- 目前是 CLI 部署，GitHub 自動部署仍指向原 main；下次從 main 部署前必須整合 codex/dispatch-integration，避免覆蓋此功能。
+- 建置的 npm audit 顯示既有依賴 67 項警示（含 4 critical），尚未完成可利用性審查，未盲目 audit fix 升級。
 - 部署與驗收步驟見 `docs/dispatch-integration.md`。下方模型上架紀錄不代表派工已上線。
 
 ## OpenAI model rollout - 2026-09-15

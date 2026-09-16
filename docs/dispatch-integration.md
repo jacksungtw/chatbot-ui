@@ -2,8 +2,10 @@
 
 ## 現況
 
+2026-09-16 更新：正式部署 c0674f1a-37e2-4d3c-af7c-3297b8b558f0 成功，私網呼叫 200；匿名 API 401，瀏覽器導回登入。主管 Email 尚未指定，兩個角色名單保持空白。PWA 已對派工端點設 NetworkOnly，線上 sw.js 已核對。這仍不是業務驗收完成。
+
 已寫好 Chatbot UI 導覽、工作區 `/dispatch` 頁面和 `/api/dispatch/*` 同源代理。
-並非正式部署。瀏覽器檔案選取測試工具逾時，不能以單元測試宣稱上傳按鈕已驗收。
+瀏覽器檔案選取測試工具曾逾時，不能以單元測試宣稱上傳按鈕已驗收。
 原有模型與 RAG 設定不變。後端是 shopee-reconcile 的 codex/toship-phase0 分支。
 
 ## 設定與邊界
@@ -34,3 +36,5 @@ Excel 解鎖密碼僅隨當次請求轉送，不寫入工作紀錄；部署的�
 
 Railway 反向代理下仍須驗證 Origin 與請求 URL 相符，以及上傳容量／請求逾時限制。
 只看到頁面或健康檢查成功，不算此流程驗收完成。
+
+目前 CLI 手動部署，須用 `railway up . --path-as-root --service chatbot-ui --environment production` 指定根目錄。原 GitHub 自動部署仍是 main；下次 main 部署前須合併此分支，否則可能退回沒有派工功能的版本。
