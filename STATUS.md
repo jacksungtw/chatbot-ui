@@ -4,7 +4,7 @@
 
 - 開放嚴格 job ID 的 LINE status/send 路徑，GET/POST 均限主管；仍保留原 Origin 驗證。
 - 配合後端群組通知按鈕，不對外暴露 LINE token。正式群組仍待憑證與核對綁定，不能宣稱已通知。
-- 15 項代理與快取測試通過，TypeScript 通過。部署 b24e92e1-9104-4c7c-b775-8a57ebaafa93 建置中，待正式介面驗收。
+- 15 項代理與快取測試通過，TypeScript 通過。部署 b24e92e1-9104-4c7c-b775-8a57ebaafa93 SUCCESS。正式主管瀏覽器載入 v177，通知區正確列出缺少 token/group 並停用傳送，未誤報送達。
 
 ## 2026-09-16 上傳 403 修正
 
