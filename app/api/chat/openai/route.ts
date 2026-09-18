@@ -33,9 +33,7 @@ export async function POST(request: Request) {
       // 優先用 display_name（人類可讀，如 jacksung）；fallback username（UUID）
       defaultHeaders: {
         "X-User-Name":
-          (profile as any).display_name ||
-          (profile as any).username ||
-          "",
+          (profile as any).display_name || (profile as any).username || "",
         "X-User-Email": (profile as any).user_email || ""
       }
     })

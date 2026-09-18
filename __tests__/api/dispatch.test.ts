@@ -103,6 +103,17 @@ test("operator cannot confirm", async () => {
   ).toBe(403)
   expect(upstream).not.toHaveBeenCalled()
 })
+
+test("LINE delivery requires supervisor on read and write", async () => {
+  const path = `toship/jobs/${"a".repeat(32)}/line`
+  expect((await request(path)).status).toBe(403)
+  expect((await request(path, "POST")).status).toBe(403)
+  expect(upstream).not.toHaveBeenCalled()
+  auth.mockResolvedValue({ data: { user: { id: "manager" } }, error: null })
+  expect((await request(path)).status).toBe(200)
+  expect((await request(path, "POST")).status).toBe(200)
+  expect(upstream.mock.calls[1][1].headers.Authorization).toBe("Bearer server-only-supervisor")
+})
 test("cross origin mutation denied", async () => {
   expect(
     (await request("toship/assign", "POST", "https://evil.example")).status

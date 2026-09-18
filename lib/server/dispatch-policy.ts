@@ -45,13 +45,15 @@ export function dispatchPath(path: string[], method: string) {
     return joined
   if (
     method === "GET" &&
-    /^toship\/jobs\/[a-f0-9]{32}(\/download)?$/.test(joined)
+    /^toship\/jobs\/[a-f0-9]{32}(\/(download|line))?$/.test(joined)
   )
     return joined
   if (
     method === "POST" &&
     /^toship\/assign\/[a-f0-9]{32}\/confirm$/.test(joined)
   )
+    return joined
+  if (method === "POST" && /^toship\/jobs\/[a-f0-9]{32}\/line$/.test(joined))
     return joined
   return null
 }

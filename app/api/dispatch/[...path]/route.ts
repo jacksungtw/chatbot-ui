@@ -40,7 +40,10 @@ async function handle(
   ) {
     return error(403, "Cross-origin request denied")
   }
-  if (path.endsWith("/confirm") && role !== "supervisor")
+  if (
+    (path.endsWith("/confirm") || path.endsWith("/line")) &&
+    role !== "supervisor"
+  )
     return error(403, "Supervisor required")
   if (path === "session/me")
     return Response.json(

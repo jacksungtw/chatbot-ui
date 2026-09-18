@@ -1,4 +1,5 @@
 {
+  "line_delivery_proxy": {"implemented": true, "supervisor_only": true, "production_group_receipt_verified": false},
   "dispatch_integration": {
     "status": "supervisor_runtime_verified_pending_browser_acceptance",
     "authorization_runtime": "deployment SUCCESS; designated UUID present; supervisor count 1",
